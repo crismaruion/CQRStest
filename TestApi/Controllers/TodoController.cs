@@ -29,7 +29,7 @@ namespace TestApi.Web.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult>Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
             var query = new GetTodoByIdQuery(id);
             var result = await _mediator.Send(query);
@@ -44,6 +44,14 @@ namespace TestApi.Web.Controllers
             return Ok(result);
         }
 
-
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteById(int id)
+        {
+            await _mediator.Send(new DeleteToDoCommand
+            {
+                TodoId = id
+            });
+            return NoContent();
+        }
     }
 }

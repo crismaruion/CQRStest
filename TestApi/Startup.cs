@@ -59,7 +59,7 @@ namespace TestApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors(app => app.AllowAnyMethod().AllowAnyOrigin().AllowAnyHeader());
             app.UseAuthorization();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
