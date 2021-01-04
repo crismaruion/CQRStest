@@ -53,5 +53,13 @@ namespace TestApi.Web.Controllers
             });
             return NoContent();
         }
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> UpdateAsync(int id, [FromBody] UpdateTodoCommand command)
+        {
+            command.Id = id;
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
     }
 }
